@@ -1,4 +1,4 @@
-
+import { ObjectId } from "mongoose";
 import {
   AddSongToPlaylistInput,
   CreatePlaylistInput,
@@ -24,6 +24,12 @@ class PlaylistService {
       { _id: input._id },
       { $push: { playlistSongs: input.playlistSong } }
     );
+  }
+
+  async findAllUserPlaylists(by: ObjectId) {
+    return PlaylistModel.find({
+      by,
+    });
   }
 }
 

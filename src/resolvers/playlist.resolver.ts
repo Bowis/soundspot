@@ -27,13 +27,20 @@ export default class PlaylistResolver {
   }
 
   @Authorized()
-  @Mutation(() => Album)
+  @Mutation(() => Playlist)
   createPlaylist(
     @Arg("input") input: CreatePlaylistInput,
     @Ctx() context: Context
   ) {
-    const user = context.user!;
+    // const user = context.user!;
+    const { user } = context;
     return this.playlistService.createPlaylist({ ...input, by: user?._id });
+  }
+
+  @Query(() => [Playlist])
+  findAllUserPlaylists(@Ctx() context: Context) {
+    const {user} = context;
+    return this.playlistService.findAllUserPlaylists(user?._id)
   }
 
   @Authorized()
