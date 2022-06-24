@@ -5,6 +5,7 @@ import PlaylistResolver from "./playlist.resolver";
 import SongResolver from "./song.resolver";
 import UserResolver from "./user.resolver";
 import UserLikeResolver from "./userLike.resolver";
+import UserLikeAlbumResolver from "./userLikeAlbum.resolver";
 
 export const resolvers = [
   UserResolver,
@@ -14,4 +15,5 @@ export const resolvers = [
   PlaylistResolver,
   UserLikeResolver,
   CategoryResolver,
+  UserLikeAlbumResolver,
 ] as const;

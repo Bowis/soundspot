@@ -1,5 +1,6 @@
 import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
 import { Field, InputType, ObjectType } from "type-graphql";
+import { Category } from "./category.schema";
 import { Song } from "./song.schema";
 import { User } from "./user.schema";
 
@@ -30,6 +31,10 @@ export class Album {
   @prop({ type: AlbumSong })
   albumSongs!: Partial<AlbumSong>[];
 
+  @Field(() => Category)
+  @prop({ required: true, ref: Category })
+  category: Ref<Category>;
+
   @Field(() => String)
   @prop({ required: true })
   imageUri: string;
@@ -37,6 +42,9 @@ export class Album {
   @Field(() => User)
   @prop({ required: true, ref: () => User })
   by: Ref<User>;
+
+  @Field(() => Boolean)
+  liked: boolean;
 
   @Field(() => Date)
   @prop({ required: true, default: Date.now })

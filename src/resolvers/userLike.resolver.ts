@@ -9,7 +9,7 @@ import {
   Resolver,
   Root,
 } from "type-graphql";
-import { CreateSongInput, GetSongInput, Song } from "../schema/song.schema";
+import { SongModel } from "../schema/song.schema";
 import { UserModel } from "../schema/user.schema";
 import { CreateUserLikeInput, UserLike } from "../schema/userLike.schema";
 import SongService from "../service/song.service";
@@ -30,6 +30,32 @@ export default class UserLikeResolver {
   ) {
     const user = context.user!;
     return this.userLikeService.createUserLike({ ...input, user: user?._id });
+  }
+
+  @Authorized()
+  @Query(() => [UserLike])
+  findAllUserLikes(@Ctx() context: Context) {
+    const user = context.user!._id;
+    console.log('hit')
+    return this.userLikeService.findAllUserLikes(user);
+  }
+
+  @Authorized()
+  @Mutation(() => UserLike)
+  removeUserLike(
+    @Arg("input") input: CreateUserLikeInput,
+    @Ctx() context: Context
+  ) {
+    const user = context.user!;
+    return this.userLikeService.removeUserLike({ ...input, user: user?._id });
+  }
+
+  @FieldResolver()
+  async song(
+    @Root() userLike: DocumentType<UserLike>
+  ): Promise<UserLike["song"]> {
+    await SongModel.populate(userLike, { path: "song" });
+    return userLike.song;
   }
 
   @FieldResolver()

@@ -2,7 +2,11 @@ import { CategoryModel, CreateCategoryInput } from "../schema/category.schema";
 
 class CategoryService {
   async createCategory(input: CreateCategoryInput) {
-    return CategoryModel.create(input);
+    return await CategoryModel.create(input);
+  }
+
+  async categories() {
+    return await CategoryModel.find().exec();
   }
 }
 

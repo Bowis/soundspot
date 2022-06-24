@@ -1,8 +1,4 @@
-import {
-  AlbumModel,
-  CreateAlbumInput,
-  GetAlbumInput,
-} from "../schema/album.schema";
+
 import {
   AddSongToPlaylistInput,
   CreatePlaylistInput,

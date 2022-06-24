@@ -26,6 +26,8 @@ export class Playlist {
   @prop({ required: true, default: 0 })
   likes: number;
 
+ 
+
   @Field(() => [PlaylistSong])
   @prop({ type: PlaylistSong })
   playlistSongs!: Partial<PlaylistSong>[];

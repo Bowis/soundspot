@@ -1,11 +1,12 @@
 import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
 import { ObjectId } from "mongoose";
 import { Field, ID, InputType, ObjectType } from "type-graphql";
+import { Album } from "./album.schema";
 import { Song } from "./song.schema";
 import { User } from "./user.schema";
 
 @ObjectType()
-export class UserLike {
+export class UserLikeAlbum {
   @Field(() => String)
   _id: string;
 
@@ -13,10 +14,9 @@ export class UserLike {
   @prop({ required: true, ref: () => User })
   user: Ref<User>;
 
-  @Field(() => Song)
+  @Field(() => Album)
   @prop({ required: true, ref: () => Song })
-  song: Ref<Song>;
-
+  album: Ref<Album>;
 
   @Field(() => Date)
   @prop({ required: true, default: Date.now })
@@ -27,16 +27,16 @@ export class UserLike {
   updatedAt: Date;
 }
 
-export const UserLikeModel = getModelForClass<typeof UserLike>(UserLike);
+export const UserLikeAlbumModel = getModelForClass<typeof UserLikeAlbum>(UserLikeAlbum);
 
 @InputType()
-export class CreateUserLikeInput {
+export class CreateUserLikeAlbumInput {
   @Field(() => ID)
-  song: ObjectId;
+  album: ObjectId;
 }
 
 @InputType()
-export class GetUserLikesInput {
+export class GetUserLikesAlbumInput {
   @Field()
   user: ObjectId;
 }

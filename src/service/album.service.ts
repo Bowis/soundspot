@@ -20,8 +20,12 @@ class AlbumService {
     return AlbumModel.create(input);
   }
 
-  async findSingleAlbum(input: GetAlbumInput) {
-    return AlbumModel.findOne(input).lean();
+  // async findSingleAlbum(input: GetAlbumInput) {
+  //   return AlbumModel.findOne(input).lean();
+  // }
+
+  async findAlbumById(_id: string) {
+    return await AlbumModel.findById(_id);
   }
 }
 

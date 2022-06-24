@@ -2,7 +2,7 @@ import { ApolloError } from "apollo-server";
 import { LoginInput, UserModel } from "../schema/user.schema";
 import Context from "../types/context";
 import bcrypt from "bcrypt";
-import { signJwt } from "../utils/jwt";
+import { signJwt } from "./utils/jwt";
 
 export default class UserService {
   async createUser(input: any) {
@@ -26,7 +26,7 @@ export default class UserService {
 
     const token = signJwt(user);
 
-   const test =  context.res.cookie("accessToken", token, {
+    const test = context.res.cookie("accessToken", token, {
       maxAge: 3.154e10,
       httpOnly: true,
       domain: "localhost",

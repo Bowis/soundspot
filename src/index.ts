@@ -10,11 +10,11 @@ import {
 } from "apollo-server-core";
 import { ApolloServer } from "apollo-server-express";
 import { resolvers } from "./resolvers";
-import { connectToMongo } from "./utils/mongo";
-import { verifyJwt } from "./utils/jwt";
+import { connectToMongo } from "./service/utils/mongo";
+import { verifyJwt } from "./service/utils/jwt";
 import Context from "./types/context";
 import { User } from "./schema/user.schema";
-import authChecker from "./utils/authChecker"
+import authChecker from "./service/utils/authChecker"
 
 async function bootstrap() {
   const schema = await buildSchema({

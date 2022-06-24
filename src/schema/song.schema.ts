@@ -15,13 +15,24 @@ export class Song {
   @prop({ required: true, default: 0 })
   likes: number;
 
+  @Field(() => Number)
+  @prop({ required: true, default: 0 })
+  plays: number;
+
   @Field(() => String)
   @prop({ required: true })
   imageUri: string;
 
   @Field(() => String)
+  @prop({ required: true })
+  soundUri: string;
+
+  @Field(() => User)
   @prop({ required: true, ref: () => User })
   by: Ref<User>;
+
+  @Field(() => Boolean)
+  liked: boolean;
 
   @Field(() => Date)
   @prop({ required: true, default: Date.now })
@@ -47,5 +58,4 @@ export class CreateSongInput {
 export class GetSongInput {
   @Field()
   _id: string;
-
 }
