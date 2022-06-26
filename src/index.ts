@@ -5,6 +5,7 @@ import express from "express";
 import { buildSchema } from "type-graphql";
 import cookieParser from "cookie-parser";
 import {
+  ApolloServerPluginLandingPageLocalDefault,
   ApolloServerPluginLandingPageGraphQLPlayground,
   ApolloServerPluginLandingPageProductionDefault,
 } from "apollo-server-core";
@@ -38,8 +39,8 @@ async function bootstrap() {
     },
     plugins: [
       process.env.NODE_ENV === "production"
-        ? ApolloServerPluginLandingPageProductionDefault
-        : ApolloServerPluginLandingPageGraphQLPlayground,
+        ? ApolloServerPluginLandingPageLocalDefault
+        : ApolloServerPluginLandingPageLocalDefault,
     ],
   });
 

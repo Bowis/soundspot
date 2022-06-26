@@ -8,7 +8,11 @@ import { SongModel } from "../schema/song.schema";
 import { User } from "../schema/user.schema";
 
 class PlaylistService {
-  async createPlaylist(input: CreatePlaylistInput & { by: User["_id"] }) {
+  async createPlaylist(
+    input: CreatePlaylistInput & { by: User["_id"] } & {
+      imagUri: "https://zerojackerzz.com/wp-content/uploads/2019/10/album-placeholder.png";
+    }
+  ) {
     return PlaylistModel.create(input);
   }
 
@@ -30,6 +34,10 @@ class PlaylistService {
     return PlaylistModel.find({
       by,
     });
+  }
+
+  async findPlaylistById(_id: string) {
+    return PlaylistModel.findById(_id);
   }
 }
 

@@ -31,7 +31,7 @@ export class Playlist {
   playlistSongs!: Partial<PlaylistSong>[];
 
   @Field(() => String)
-  @prop({ required: true })
+  @prop({required: true })
   imageUri: string;
 
   @Field(() => User)
@@ -59,9 +59,6 @@ export class PlaylistSongInput implements Partial<PlaylistSong> {
 export class CreatePlaylistInput {
   @Field()
   title: string;
-
-  @Field()
-  imageUri: string;
 }
 
 @InputType()

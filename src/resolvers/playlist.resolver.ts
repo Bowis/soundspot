@@ -34,13 +34,23 @@ export default class PlaylistResolver {
   ) {
     // const user = context.user!;
     const { user } = context;
-    return this.playlistService.createPlaylist({ ...input, by: user?._id });
+    return this.playlistService.createPlaylist({
+      ...input,
+      by: user?._id,
+      imageUri:
+        "https://zerojackerzz.com/wp-content/uploads/2019/10/album-placeholder.png",
+    });
   }
 
   @Query(() => [Playlist])
   findAllUserPlaylists(@Ctx() context: Context) {
-    const {user} = context;
-    return this.playlistService.findAllUserPlaylists(user?._id)
+    const { user } = context;
+    return this.playlistService.findAllUserPlaylists(user?._id);
+  }
+
+  @Query(() => Playlist)
+  findPlaylistById(@Arg("_id") _id: string) {
+    return this.playlistService.findPlaylistById(_id);
   }
 
   @Authorized()
