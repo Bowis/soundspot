@@ -984,6 +984,11 @@ get-intrinsic@^1.0.2:
     has "^1.0.3"
     has-symbols "^1.0.3"
 
+get-mp3-duration@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/get-mp3-duration/-/get-mp3-duration-1.0.0.tgz#471efca0f9e4930e7866016f6078582f4ce934cb"
+  integrity sha512-SiTppS0shvqCJ8rky8E1Yi9thLoTTGq3Tjc4n4pmjo8BMuiQFN3cCfiaWmRFk/8TjhOQhPwrpJZJDvOcbPVwrw==
+
 glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"

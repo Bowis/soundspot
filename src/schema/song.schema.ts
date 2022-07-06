@@ -27,6 +27,11 @@ export class Song {
   @prop({ required: true })
   soundUri: string;
 
+  @Field(() => Number)
+  @prop({ required: true })
+  songLength: number;
+
+
   @Field(() => User)
   @prop({ required: true, ref: () => User })
   by: Ref<User>;

@@ -15,7 +15,7 @@ import { connectToMongo } from "./service/utils/mongo";
 import { verifyJwt } from "./service/utils/jwt";
 import Context from "./types/context";
 import { User } from "./schema/user.schema";
-import authChecker from "./service/utils/authChecker"
+import authChecker from "./service/utils/authChecker";
 
 async function bootstrap() {
   const schema = await buildSchema({
@@ -39,8 +39,8 @@ async function bootstrap() {
     },
     plugins: [
       process.env.NODE_ENV === "production"
-        ? ApolloServerPluginLandingPageLocalDefault
-        : ApolloServerPluginLandingPageLocalDefault,
+        ? ApolloServerPluginLandingPageProductionDefault()
+        : ApolloServerPluginLandingPageGraphQLPlayground(),
     ],
   });
 

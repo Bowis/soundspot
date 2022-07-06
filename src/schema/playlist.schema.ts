@@ -30,8 +30,18 @@ export class Playlist {
   @prop({ type: PlaylistSong })
   playlistSongs!: Partial<PlaylistSong>[];
 
+  @Field(() => Number)
+  @prop({ required: true, default: 0 })
+  plays: number;
+
+  @Field(() => Number)
+  numberOfTracks: number;
+
   @Field(() => String)
-  @prop({required: true })
+  totalTrackTime: string;
+
+  @Field(() => String)
+  @prop({ required: true })
   imageUri: string;
 
   @Field(() => User)
@@ -59,6 +69,24 @@ export class PlaylistSongInput implements Partial<PlaylistSong> {
 export class CreatePlaylistInput {
   @Field()
   title: string;
+}
+
+@InputType()
+export class EditPlaylistInput {
+  @Field()
+  title: string;
+
+  @Field({ nullable: true })
+  imageUri: string;
+}
+
+@InputType()
+export class CreatePlaylistFromSongInput {
+  @Field()
+  title: string;
+
+  @Field(() => PlaylistSongInput)
+  playlistSong!: PlaylistSongInput;
 }
 
 @InputType()
