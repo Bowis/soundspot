@@ -48,6 +48,9 @@ export class Playlist {
   @prop({ required: true, ref: () => User })
   by: Ref<User>;
 
+  @Field(() => Boolean)
+  byCurrentUser: boolean;
+
   @Field(() => Date)
   @prop({ required: true, default: Date.now })
   createdAt: Date;

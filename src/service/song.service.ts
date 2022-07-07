@@ -14,10 +14,8 @@ class SongService {
     return SongModel.findOne(input).lean();
   }
 
-  async getSongById(_id: string) {
-    const song = await SongModel.findById(_id);
-    console.log(song);
-    return song;
+   getSongById(_id: string) {
+    return SongModel.findById(_id);
   }
 
   async increaseSongPlays(_id: string) {

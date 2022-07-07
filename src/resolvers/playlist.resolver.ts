@@ -93,9 +93,8 @@ export default class PlaylistResolver {
     return this.playlistService.findPlaylistById(_id);
   }
 
-  @Authorized()
   @Mutation(() => Playlist)
-  addSongToPlaylist(@Arg("input") input: AddSongToPlaylistInput) {
+  async addSongToPlaylist(@Arg("input") input: AddSongToPlaylistInput) {
     return this.playlistService.addSongToPlaylist(input);
   }
 
@@ -108,6 +107,11 @@ export default class PlaylistResolver {
   async by(@Root() playlist: DocumentType<Playlist>): Promise<Playlist["by"]> {
     await UserModel.populate(playlist, { path: "by" });
     return playlist.by;
+  }
+
+  @FieldResolver()
+  byCurrentUser(@Root() root: DocumentType<Playlist>, @Ctx() context: Context) {
+    return root.by?.toString() === context.user!._id ? true : false;
   }
 
   @FieldResolver()

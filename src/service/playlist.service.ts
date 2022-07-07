@@ -18,14 +18,17 @@ class PlaylistService {
   }
 
   async editPlaylist(_id: String, input: EditPlaylistInput) {
-    return PlaylistModel.findOneAndUpdate({_id}, input);
+    return PlaylistModel.findOneAndUpdate({ _id }, input);
   }
 
   async addSongToPlaylist(input: AddSongToPlaylistInput) {
     if (input.playlistSong._id.match(/^[0-9a-fA-F]{24}$/)) {
       const song = await SongModel.findById(input.playlistSong._id);
       if (!song) throw new Error("song not found");
+      console.log("not found");
     } else {
+      console.log("not found");
+
       throw new Error("No objectId");
     }
 
