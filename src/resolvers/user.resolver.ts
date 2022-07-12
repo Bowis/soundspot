@@ -11,6 +11,10 @@ export default class UserResolver {
 
   @Mutation(() => User)
   createUser(@Arg("input") input: CreateUserInput, @Ctx() context: Context) {
+    if (!input.avatarUri) {
+      input.avatarUri ===
+        "https://zerojackerzz.com/wp-content/uploads/2019/10/album-placeholder.png";
+    }
     return this.userService.createUser(input);
   }
   @Mutation(() => String)
@@ -18,7 +22,7 @@ export default class UserResolver {
     return this.userService.login(input, context);
   }
 
-  @Query(() => User, {nullable: true})
+  @Query(() => User, { nullable: true })
   me(@Ctx() context: Context) {
     return context.user;
   }

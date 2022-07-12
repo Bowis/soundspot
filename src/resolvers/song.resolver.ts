@@ -42,6 +42,11 @@ export default class SongResolver {
     return this.songService.getSongById(_id);
   }
 
+  @Query(() => [Song])
+  getSongsBySearchTerm(@Arg("searchTerm") searchTerm: string) {
+    return this.songService.getSongsBySearchTerm(searchTerm);
+  }
+
   @FieldResolver()
   async by(@Root() song: DocumentType<Song>): Promise<Song["by"]> {
     await UserModel.populate(song, { path: "by" });

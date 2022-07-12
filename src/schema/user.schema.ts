@@ -1,4 +1,10 @@
-import { getModelForClass, index, pre, prop, queryMethod } from "@typegoose/typegoose";
+import {
+  getModelForClass,
+  index,
+  pre,
+  prop,
+  queryMethod,
+} from "@typegoose/typegoose";
 import { IsEmail, MaxLength, MinLength } from "class-validator";
 import { Field, InputType, ObjectType } from "type-graphql";
 import bcrypt from "bcrypt";
@@ -42,6 +48,10 @@ export class User {
 
   @Field(() => String)
   @prop({ required: true })
+  avatarUri: string;
+
+  @Field(() => String)
+  @prop({ required: true })
   password: string;
 }
 
@@ -55,6 +65,9 @@ export class CreateUserInput {
   @IsEmail()
   @Field(() => String)
   email: string;
+
+  @Field(() => String)
+  avatarUri: string;
 
   @MinLength(6, {
     message: "Password must be at least 6 characters long",

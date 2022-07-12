@@ -22,7 +22,7 @@ class UserLikeService {
 
   async findAllUserLikes(user: any) {
     return await UserLikeModel.find({
-      user
+      user,
     });
   }
 }

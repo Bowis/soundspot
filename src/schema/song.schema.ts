@@ -1,4 +1,4 @@
-import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
+import { getModelForClass, index, prop, Ref } from "@typegoose/typegoose";
 import { Field, InputType, ObjectType } from "type-graphql";
 import { User } from "./user.schema";
 
@@ -31,13 +31,15 @@ export class Song {
   @prop({ required: true })
   songLength: number;
 
-
   @Field(() => User)
   @prop({ required: true, ref: () => User })
   by: Ref<User>;
 
   @Field(() => Boolean)
   liked: boolean;
+
+  @Field(() => String)
+  searchResultId: string;
 
   @Field(() => Date)
   @prop({ required: true, default: Date.now })

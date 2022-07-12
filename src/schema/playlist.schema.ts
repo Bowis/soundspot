@@ -51,6 +51,9 @@ export class Playlist {
   @Field(() => Boolean)
   byCurrentUser: boolean;
 
+  @Field(() => String)
+  searchResultId: string;
+
   @Field(() => Date)
   @prop({ required: true, default: Date.now })
   createdAt: Date;

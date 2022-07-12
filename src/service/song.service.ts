@@ -14,8 +14,14 @@ class SongService {
     return SongModel.findOne(input).lean();
   }
 
-   getSongById(_id: string) {
-    return SongModel.findById(_id);
+  getSongById(_id: string) {
+    return SongModel.findById(_id).lean().exec();
+  }
+
+  async getSongsBySearchTerm(searchTerm: string) {
+    return await SongModel.find({
+      title: { $regex: searchTerm, $options: "i" },
+    });
   }
 
   async increaseSongPlays(_id: string) {

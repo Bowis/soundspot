@@ -83,6 +83,13 @@ export default class PlaylistResolver {
   }
 
   @Query(() => [Playlist])
+  getPlaylistsBySearchTerm(@Arg("searchTerm") searchTerm: string) {
+    console.log(searchTerm);
+
+    return this.playlistService.getPlaylistsBySearchTerm(searchTerm);
+  }
+
+  @Query(() => [Playlist])
   findAllUserPlaylists(@Ctx() context: Context) {
     const { user } = context;
     return this.playlistService.findAllUserPlaylists(user?._id);

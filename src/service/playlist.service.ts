@@ -38,6 +38,13 @@ class PlaylistService {
     );
   }
 
+  async getPlaylistsBySearchTerm(searchTerm: string) {
+    const playlists = await PlaylistModel.find({
+      title: { $regex: searchTerm, $options: "i" },
+    });
+    return playlists;
+  }
+
   async findAllUserPlaylists(by: ObjectId) {
     return PlaylistModel.find({
       by,
@@ -45,7 +52,7 @@ class PlaylistService {
   }
 
   async findPlaylistById(_id: string) {
-    return PlaylistModel.findById(_id);
+    return PlaylistModel.findById(_id).exec();
   }
 
   async increasePlaylistPlays(_id: string) {

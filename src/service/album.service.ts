@@ -20,9 +20,11 @@ class AlbumService {
     return AlbumModel.create(input);
   }
 
-  // async findSingleAlbum(input: GetAlbumInput) {
-  //   return AlbumModel.findOne(input).lean();
-  // }
+  async getAlbumsBySearchTerm(searchTerm: string) {
+    return await AlbumModel.find({
+      title: { $regex: searchTerm, $options: "i" },
+    });
+  }
 
   async findAlbumById(_id: string) {
     return await AlbumModel.findById(_id);

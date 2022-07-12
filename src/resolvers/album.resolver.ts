@@ -38,6 +38,11 @@ export default class AlbumResolver {
     return this.albumService.findAlbumById(_id);
   }
 
+  @Query(() => [Album])
+  getAlbumsBySearchTerm(@Arg("searchTerm") searchTerm: string) {
+    return this.albumService.getAlbumsBySearchTerm(searchTerm);
+  }
+
   @FieldResolver()
   async category(
     @Root() album: DocumentType<Album>
