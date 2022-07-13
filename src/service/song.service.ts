@@ -20,7 +20,7 @@ class SongService {
 
   async getSongsBySearchTerm(searchTerm: string) {
     return await SongModel.find({
-      title: { $regex: searchTerm, $options: "i" },
+      title: { $regex: "^" + searchTerm, $options: "i" },
     });
   }
 

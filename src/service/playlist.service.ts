@@ -40,7 +40,7 @@ class PlaylistService {
 
   async getPlaylistsBySearchTerm(searchTerm: string) {
     const playlists = await PlaylistModel.find({
-      title: { $regex: searchTerm, $options: "i" },
+      title: { $regex: "^" + searchTerm, $options: "i" },
     });
     return playlists;
   }
