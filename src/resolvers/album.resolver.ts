@@ -13,7 +13,7 @@ import { Album, CreateAlbumInput, GetAlbumInput } from "../schema/album.schema";
 import { CategoryModel } from "../schema/category.schema";
 import { UserModel } from "../schema/user.schema";
 import AlbumService from "../service/album.service";
-import UserLikeAlbumService from "../service/userLikeAlbum.service";
+import UserLikeAlbumService from "../service/userLikeCollection.service";
 import Context from "../types/context";
 
 @Resolver((_of) => Album)

@@ -1,4 +1,4 @@
-import { DocumentType } from "@typegoose/typegoose";
+  import { DocumentType } from "@typegoose/typegoose";
 import { ObjectId } from "mongoose";
 import {
   Arg,
