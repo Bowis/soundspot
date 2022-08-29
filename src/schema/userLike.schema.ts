@@ -17,7 +17,6 @@ export class UserLike {
   @prop({ required: true, ref: () => Song })
   song: Ref<Song>;
 
-
   @Field(() => Date)
   @prop({ required: true, default: Date.now })
   createdAt: Date;
@@ -37,6 +36,6 @@ export class CreateUserLikeInput {
 
 @InputType()
 export class GetUserLikesInput {
-  @Field()
+  @Field(() => ID)
   user: ObjectId;
 }

@@ -46,6 +46,6 @@ export class CreateSongCollectionFromSongInput {
 
 @InputType()
 export class GetUserLikesCollectionInput {
-  @Field()
+  @Field(() => ID)
   user: ObjectId;
 }

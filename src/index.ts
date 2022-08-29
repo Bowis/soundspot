@@ -16,13 +16,9 @@ import { verifyJwt } from "./service/utils/jwt";
 import Context from "./types/context";
 import { User } from "./schema/user.schema";
 import authChecker from "./service/utils/authChecker";
+import { schema } from "./apollo";
 
 async function bootstrap() {
-  const schema = await buildSchema({
-    resolvers,
-    authChecker,
-  });
-
   const app = express();
 
   app.use(cookieParser());

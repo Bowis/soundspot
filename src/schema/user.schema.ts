@@ -47,7 +47,7 @@ export class User {
   email: string;
 
   @Field(() => String)
-  @prop({ required: true })
+  @prop({ required: false })
   avatarUri: string;
 
   @Field(() => String)

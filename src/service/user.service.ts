@@ -24,8 +24,8 @@ export default class UserService {
       throw new ApolloError(e);
     }
 
-    const token = signJwt(user);  
-
+    const token = signJwt(user);
+    console.log(context);
     const test = context.res.cookie("accessToken", token, {
       maxAge: 3.154e10,
       httpOnly: true,

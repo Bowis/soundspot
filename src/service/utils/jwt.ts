@@ -1,7 +1,6 @@
 import config from "config";
 import jwt from "jsonwebtoken";
 
-
 const publicKey = Buffer.from(
   config.get<string>("publicKey"),
   "base64"
@@ -14,7 +13,6 @@ const privateKey = Buffer.from(
 export function signJwt(object: Object, options?: jwt.SignOptions | undefined) {
   return jwt.sign(object, privateKey, {
     ...(options && options),
-    algorithm: "RS256",
   });
 }
 
