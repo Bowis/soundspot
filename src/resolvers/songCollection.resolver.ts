@@ -10,7 +10,6 @@ import {
   Root,
 } from "type-graphql";
 import { CategoryModel } from "../schema/category.schema";
-import { Song } from "../schema/song.schema";
 import {
   AddSongToCollectionInput,
   CreateSongCollectionInput,
@@ -18,6 +17,7 @@ import {
   SongCollection,
 } from "../schema/songCollection.schema";
 import { UserModel } from "../schema/user.schema";
+import { CreateSongCollectionFromSongInput } from "../schema/userLikeCollection.schema";
 import SongService from "../service/song.service";
 import SongCollectionService from "../service/songCollection.service";
 import { convertMsToHM } from "../service/utils/helpers";
@@ -57,7 +57,7 @@ export default class SongCollectionResolver {
 
   @Mutation(() => SongCollection)
   async createPlaylistFromSong(
-    @Arg("input") input: CreatePlaylistFromSongInput,
+    @Arg("input") input: CreateSongCollectionFromSongInput,
     @Ctx() context: Context
   ) {
     const { user } = context;
@@ -105,18 +105,18 @@ export default class SongCollectionResolver {
 
   @FieldResolver()
   async category(
-    @Root() collection: DocumentType<SongCollection>
+    @Root() songCollection: DocumentType<SongCollection>
   ): Promise<SongCollection["category"]> {
-    await CategoryModel.populate(collection, { path: "category" });
-    return collection.category;
+    await CategoryModel.populate(songCollection, { path: "category" });
+    return songCollection.category;
   }
 
   @FieldResolver()
   async by(
-    @Root() collection: DocumentType<SongCollection>
+    @Root() songCollection: DocumentType<SongCollection>
   ): Promise<SongCollection["by"]> {
-    await UserModel.populate(collection, { path: "by" });
-    return collection.by;
+    await UserModel.populate(songCollection, { path: "by" });
+    return songCollection.by;
   }
 
   byCurrentUser(

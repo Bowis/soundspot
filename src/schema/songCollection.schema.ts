@@ -31,9 +31,9 @@ export class SongCollection {
   @prop({ type: CollectionSong })
   songs!: Partial<CollectionSong>[];
 
-  @Field(() => Category)
-  @prop({ required: true, ref: Category })
-  category: Ref<Category>;
+  // @Field(() => Category)
+  // @prop({ required: true, ref: Category })
+  // category: Ref<Category>;
 
   @Field(() => String)
   @prop({ required: true })

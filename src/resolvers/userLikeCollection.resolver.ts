@@ -51,11 +51,11 @@ export default class UserLikeCollectionResolver {
   }
 
   @FieldResolver()
-  async collection(
+  async songCollection(
     @Root() userLike: DocumentType<UserLikeCollection>
-  ): Promise<UserLikeCollection["collection"]> {
-    await SongCollectionModel.populate(userLike, { path: "collection" });
-    return userLike.collection;
+  ): Promise<UserLikeCollection["songCollection"]> {
+    await SongCollectionModel.populate(userLike, { path: "songCollection" });
+    return userLike.songCollection;
   }
 
   @FieldResolver()

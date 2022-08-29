@@ -5,8 +5,7 @@ import { registerEnumType } from "type-graphql";
 
 export enum Result {
   Song = "Song",
-  Album = "Album",
-  Playlist = "Playlist",
+  SongCollection = "SongCollection",
 }
 
 registerEnumType(Result, {

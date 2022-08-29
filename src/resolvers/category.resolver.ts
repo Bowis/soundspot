@@ -7,8 +7,8 @@ import {
   Resolver,
   Root,
 } from "type-graphql";
-import { Album, AlbumModel } from "../schema/album.schema";
 import { Category, CreateCategoryInput } from "../schema/category.schema";
+import { SongCollection, SongCollectionModel } from "../schema/songCollection.schema";
 import CategoryService from "../service/category.service";
 
 @Resolver((_of) => Category)
@@ -28,10 +28,10 @@ export default class CategoryResolver {
   }
 
   @FieldResolver()
-  async albums(@Root() root: DocumentType<Category>): Promise<Album[]> {
-    const albums = await AlbumModel.find({
-      albumCategory: root.id,
+  async songCollections(@Root() root: DocumentType<Category>): Promise<SongCollection[]> {
+    const songCollections = await SongCollectionModel.find({
+      category: root.id,
     }).exec();
-    return albums;
+    return songCollections;
   }
 }

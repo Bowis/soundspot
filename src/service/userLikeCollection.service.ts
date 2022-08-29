@@ -10,7 +10,7 @@ class UserLikeCollectionService {
     input: CreateUserLikeCollectionInput & { user: User["_id"] }
   ) {
     const userLikeAlbum = await UserLikeCollectionModel.create(input);
-    const collectionId = input.collection;
+    const collectionId = input.songCollection;
 
     const collection = await SongCollectionModel.findById(collectionId);
     if (collection) {

@@ -1,4 +1,5 @@
 import { DocumentType } from "@typegoose/typegoose";
+import { Collection } from "mongoose";
 import {
   Arg,
   createUnionType,
@@ -9,26 +10,20 @@ import {
   Resolver,
   Root,
 } from "type-graphql";
-import { Album } from "../schema/album.schema";
-import { Playlist } from "../schema/playlist.schema";
 import { CreateSearchInput, Search } from "../schema/search.schema";
 import { Song } from "../schema/song.schema";
+import { SongCollection } from "../schema/songCollection.schema";
 import { User, UserModel } from "../schema/user.schema";
-import AlbumService from "../service/album.service";
-import PlaylistService from "../service/playlist.service";
 import SearchService from "../service/search.service";
 import SongService from "../service/song.service";
 import Context from "../types/context";
 
 const SearchResultUnion = createUnionType({
   name: "SearchResult",
-  types: () => [Song, Album, Playlist] as const,
+  types: () => [Song, SongCollection] as const,
   resolveType: (value) => {
-    if ("albumSongs" in value) {
-      return Album;
-    }
-    if ("playlistSongs" in value) {
-      return Playlist;
+    if ("songs" in value) {
+      return SongCollection;
     }
     return Song;
   },

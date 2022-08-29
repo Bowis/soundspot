@@ -1,6 +1,6 @@
 import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
 import { Field, InputType, ObjectType } from "type-graphql";
-import { Album } from "./album.schema";
+import { SongCollection } from "./songCollection.schema";
 
 @ObjectType()
 export class Category {
@@ -11,9 +11,9 @@ export class Category {
   @prop({ required: true })
   name: string;
 
-  @Field(() => [Album], { nullable: true })
-  @prop({ nullable: true })
-  albums?: Ref<Album[]>;
+  @Field(() => [SongCollection], { nullable: false })
+  @prop({ nullable: false })
+  songCollections?: Ref<SongCollection[]>;
 
   @Field(() => Date)
   @prop({ required: true, default: Date.now })
