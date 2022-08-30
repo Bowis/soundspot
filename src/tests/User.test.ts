@@ -7,6 +7,17 @@ import mongoose from "mongoose";
 import config from "config";
 import { Ctx } from "type-graphql";
 import { gCall } from "../utils/test/gCall";
+import { faker } from "@faker-js/faker";
+
+const registerMutation = `
+   mutation Register($input: CreateUserInput!) {
+      createUser(
+         input: $input
+      ) {
+         email
+      }
+   }
+`;
 
 let conn: Connection;
 beforeAll(async () => {
@@ -21,29 +32,21 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-const registerMutation = `
-   mutation Register($input: CreateUserInput!) {
-      createUser(
-         input: $input
-      ) {
-         email
-      }
-   }
-`;
-
 describe("Register user", () => {
   it("create a user", async () => {
+    const user = {
+      email: faker.internet.email(),
+      password: faker.internet.password(),
+      name: faker.name.fullName(),
+      avatarUri: faker.internet.avatar(),
+    };
+
     const { data } = await gCall({
       source: registerMutation,
       variableValues: {
-        input: {
-          email: "test@test.com",
-          password: "312311",
-          name: "Test User",
-          avatarUri: "123",
-        },
+        input: user,
       },
     });
-    expect(data!.createUser.email).toBe("test@test.com");
+    expect(data!.createUser.email).toBe(user.email);
   });
 });
