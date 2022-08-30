@@ -23,11 +23,9 @@
     "config": "^3.3.7",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
-    "get-mp3-duration": "^1.0.0",
     "graphql": "15.x",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.6",
-    "nanoid": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1"
   }
